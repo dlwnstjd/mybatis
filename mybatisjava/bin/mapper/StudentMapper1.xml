@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="student">
+	<select id="count" resultType="int">
+		select count(*) from student
+	</select>
+	<select id="list" resultType="Student">
+		select * from student
+	</select>
+	<select id="gradelist" resultType="Student" parameterType="String">
+		select * from student where grade= #{value}
+	</select>
+	<select id="namelist" resultType="Student">
+		select * from student where name like '__'
+	</select>
+<!-- 수업 -->
+	<insert id ="insert" parameterType="Student">
+		insert into student(studno, name, id, jumin, grade, major1)
+		 values(#{studno}, #{name}, #{id}, #{jumin}, #{grade}, #{major1})
+	</insert>
+	<update id ="update" parameterType="Student">
+		update student set grade=#{grade}, weight=#{weight},
+		 height=#{height}, profno=#{profno}
+		where studno=#{studno}
+	</update>
+	<delete id="delete" parameterType="map">
+		delete from student where ${col} = #{val}
+	</delete>
+	
+	<select id="select1" resultType="Student" parameterType="int">
+		select * from student where studno = #{value}
+	</select>
+		<select id="select2" resultType="Student" parameterType="String">
+		select * from student where name like #{value}
+	</select>
+	<select id="select3" resultType="Student" parameterType="map">
+		select * from student where ${col} >= #{val}
+	</select>
+	<select id="select4" resultType="Student" parameterType="map">
+		select * from student where ${col} = #{val}
+	</select>
+</mapper>

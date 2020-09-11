@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org/DTD config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- dtd : document type definition --> 
+<!-- SYSTEM : 회사 내 사용 시 작성, PUBLIC : 국제통용에 맞춰 작성 -->
+<configuration>
+	<properties resource="mapper/mybatis.properties"/>
+	<typeAliases>
+		<typeAlias type="mapper.Member" alias="Member"/>
+		<typeAlias type="mapper.Student" alias="Student"/>
+	</typeAliases>
+	<environments default="development"><!-- Connection 설정. 접속부분 -->
+		<environment id="development">
+			<transactionManager type="JDBC"/>
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}"/>
+				<property name="url" value="${url}"/>
+				<property name="username" value="${username}"/>
+				<property name="password" value="${password}"/>
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers><!-- sql 구문 저장하는 xml 설정, interface 설정 -->
+		<mapper resource="mapper/MemberMapper1.xml"/>
+		<mapper resource="mapper/StudentMapper1.xml"/>
+		<mapper resource="mapper/StudentMapper2.xml"/>
+		<package name="mapper"/>
+	</mappers>
+</configuration>
